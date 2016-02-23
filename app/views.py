@@ -25,6 +25,10 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
+@app.route('/profile/')
+def profile():
+    """Render the website's profile page."""
+    return render_template('profile.html',myvar=timeinfo())
 
 ###
 # The functions below should be applicable to all Flask apps.
@@ -36,6 +40,9 @@ def send_text_file(file_name):
     file_dot_text = file_name + '.txt'
     return app.send_static_file(file_dot_text)
 
+@app.route("/timeinfo/")
+def timeinfo():
+    return time.strftime("%a, %d %b %Y")
 
 @app.after_request
 def add_header(response):
